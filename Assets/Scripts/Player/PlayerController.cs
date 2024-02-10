@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
                     (Vector2Int.Distance(CurrentPosition, NextPosition) - 1) * MovementAdditionalDurations +
                     MovementDuration;
                 Moving = true;
+                WireManager.Instance.PlaceWires(CurrentPosition, NextPosition);
             }
         }
         else

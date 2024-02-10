@@ -42,10 +42,16 @@ public class GridManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
-
         foreach (KeyValuePair<Vector2Int, Cell> Cell in Grid.Cells)
         {
+            if (Cell.Value.IsPowered)
+            {
+                Gizmos.color = Color.green;
+            }
+            else
+            {
+                Gizmos.color = Color.white;
+            }
             Gizmos.DrawWireCube(new Vector3(Cell.Key.x, 0f, Cell.Key.y), new Vector3(1f, 0f, 1f));
         }
     }

@@ -27,4 +27,12 @@ public class Grid
         
         return true;
     }
+
+    public void SetPower(Vector2Int position, bool power)
+    {
+        if (Cells.ContainsKey(position))
+        {
+            Cells[position].IsPowered = power;
+        }
+    }
 }
