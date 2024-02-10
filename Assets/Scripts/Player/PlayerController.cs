@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float MovementTotalDuration = 0f;
     public float MovementTime = 0f;
     public List<Vector2Int> MovementOptions = new List<Vector2Int>();
+    public int Power = 8;
     
     // Start is called before the first frame update
     void Start()
@@ -39,30 +40,35 @@ public class PlayerController : MonoBehaviour
     {
         if (!Moving)
         {
-            Vector2Int movementDirection = Vector2Int.zero;
+            if (Power > 0)
+            {
+                Vector2Int movementDirection = Vector2Int.zero;
             
-            if (Input.GetKey(KeyCode.UpArrow) && MovementOptions.Contains(Vector2Int.up))
-            {
-                movementDirection = Vector2Int.up;
-            } else if (Input.GetKey(KeyCode.DownArrow) && MovementOptions.Contains(Vector2Int.down))
-            {
-                movementDirection = Vector2Int.down;
-            } else if (Input.GetKey(KeyCode.LeftArrow) && MovementOptions.Contains(Vector2Int.left))
-            {
-                movementDirection = Vector2Int.left;
-            } else if (Input.GetKey(KeyCode.RightArrow) && MovementOptions.Contains(Vector2Int.right))
-            {
-                movementDirection = Vector2Int.right;
-            }
+                if (Input.GetKey(KeyCode.UpArrow) && MovementOptions.Contains(Vector2Int.up))
+                {
+                    movementDirection = Vector2Int.up;
+                } else if (Input.GetKey(KeyCode.DownArrow) && MovementOptions.Contains(Vector2Int.down))
+                {
+                    movementDirection = Vector2Int.down;
+                } else if (Input.GetKey(KeyCode.LeftArrow) && MovementOptions.Contains(Vector2Int.left))
+                {
+                    movementDirection = Vector2Int.left;
+                } else if (Input.GetKey(KeyCode.RightArrow) && MovementOptions.Contains(Vector2Int.right))
+                {
+                    movementDirection = Vector2Int.right;
+                }
 
-            if (movementDirection != Vector2Int.zero)
-            {
-                NextPosition = GridManager.Instance.FindStopInDirection(CurrentPosition, movementDirection);
-                MovementTotalDuration =
-                    (Vector2Int.Distance(CurrentPosition, NextPosition) - 1) * MovementAdditionalDurations +
-                    MovementDuration;
-                Moving = true;
-                WireManager.Instance.PlaceWires(CurrentPosition, NextPosition);
+                if (movementDirection != Vector2Int.zero)
+                {
+                    int powerRemaining = Power;
+                    NextPosition = GridManager.Instance.FindStopInDirection(CurrentPosition, movementDirection, Power, out powerRemaining);
+                    Power = powerRemaining;
+                    MovementTotalDuration =
+                        (Vector2Int.Distance(CurrentPosition, NextPosition) - 1) * MovementAdditionalDurations +
+                        MovementDuration;
+                    Moving = true;
+                    WireManager.Instance.PlaceWires(CurrentPosition, NextPosition);
+                } 
             }
         }
         else

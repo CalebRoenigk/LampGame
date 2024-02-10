@@ -56,15 +56,15 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public Vector2Int FindStopInDirection(Vector2Int currentPosition, Vector2Int direction)
+    public Vector2Int FindStopInDirection(Vector2Int currentPosition, Vector2Int direction, int power, out int powerRemaining)
     {
+        powerRemaining = power;
         // Check if the current position is held in the grid
         if (Grid.Cells.ContainsKey(currentPosition))
         {
             bool hitObstacle = false;
             Vector2Int checkPosition = currentPosition + direction;
-            int iterations = 100;
-            while (iterations >= 0 && !hitObstacle)
+            while (powerRemaining > 0 && !hitObstacle)
             {
                 hitObstacle = Grid.CheckOccupied(checkPosition);
 
@@ -73,7 +73,7 @@ public class GridManager : MonoBehaviour
                     checkPosition += direction;
                 }
 
-                iterations--;
+                powerRemaining--;
             }
 
             return checkPosition - direction;
