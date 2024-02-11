@@ -11,28 +11,56 @@ public class Grid
         
     }
 
-    public void CreateCell(Vector2Int position)
+    public void CreateCell(Vector2Int position, float delay = 0f)
     {
-        Cell newCell = new Cell(position);
-        
-        Cells.Add(position, newCell);
+        if (!Cells.ContainsKey(position))
+        {
+            Cell newCell = new Cell(position);
+            Cells.Add(position, newCell);
+            GridManager.Instance.GenerateCell(newCell, delay);
+        }
     }
 
-    public bool CheckOccupied(Vector2Int position)
+    public bool CheckTraversable(Vector2Int position)
     {
         if (Cells.ContainsKey(position))
         {
-            return Cells[position].IsOccupied;
+            return Cells[position].IsTraversable;
         }
         
-        return true;
+        return false;
+    }
+
+    public bool CheckCheckpoint(Vector2Int position)
+    {
+        if (Cells.ContainsKey(position))
+        {
+            return Cells[position].IsCheckpoint;
+        }
+        
+        return false;
+    }
+
+    public bool CheckExists(Vector2Int position)
+    {
+        return Cells.ContainsKey(position);
+    }
+
+    public bool CheckCanMove(Vector2Int position)
+    {
+        if (!CheckExists(position))
+        {
+            return false;
+        }
+
+        return CheckTraversable(position);
     }
 
     public void SetPower(Vector2Int position, bool power)
     {
         if (Cells.ContainsKey(position))
         {
-            Cells[position].IsPowered = power;
+            Cells[position].SetPower(power);
         }
     }
 }

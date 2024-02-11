@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e1f783391ab87428fbd637eabb62bddd
+guid: c66bcba8bf100439295dceeb2010d240
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,108 +121,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Left Arrow
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa045c473f8894661b525ed266045b99
-      internalID: 992866187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Down Arrow
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 0
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa684d7e6da0c4ab8ae2cd409559532c
-      internalID: 2079062684
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Right Arrow
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 0
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67d19adcd57a14b5285c088a1c897f63
-      internalID: -412516160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Up Arrow
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 9
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1e3104f4644d476e945c51d4ad72287
-      internalID: -279111009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 331205f069d114242b9abfc0c316555d
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: c66bcba8bf100439295dceeb2010d240, type: 3}
-      name: Emission
-    nameFileIdTable:
-      Down Arrow: 2079062684
-      Left Arrow: 992866187
-      Right Arrow: -412516160
-      Up Arrow: -279111009
+    secondaryTextures: []
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

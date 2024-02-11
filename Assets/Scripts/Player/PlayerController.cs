@@ -101,19 +101,19 @@ public class PlayerController : MonoBehaviour
     {
         MovementOptions.Clear();
 
-        if (!GridManager.Instance.Grid.CheckOccupied(CurrentPosition + Vector2Int.up))
+        if (GridManager.Instance.Grid.CheckCanMove(CurrentPosition + Vector2Int.up))
         {
             MovementOptions.Add(Vector2Int.up);
         }
-        if (!GridManager.Instance.Grid.CheckOccupied(CurrentPosition + Vector2Int.down))
+        if (GridManager.Instance.Grid.CheckCanMove(CurrentPosition + Vector2Int.down))
         {
             MovementOptions.Add(Vector2Int.down);
         }
-        if (!GridManager.Instance.Grid.CheckOccupied(CurrentPosition + Vector2Int.left))
+        if (GridManager.Instance.Grid.CheckCanMove(CurrentPosition + Vector2Int.left))
         {
             MovementOptions.Add(Vector2Int.left);
         }
-        if (!GridManager.Instance.Grid.CheckOccupied(CurrentPosition + Vector2Int.right))
+        if (GridManager.Instance.Grid.CheckCanMove(CurrentPosition + Vector2Int.right))
         {
             MovementOptions.Add(Vector2Int.right);
         }
