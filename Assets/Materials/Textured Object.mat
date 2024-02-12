@@ -50,7 +50,7 @@ Material:
     - _Powered: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Visibility: 1
+    - _Visibility: 0
     m_Colors:
     - _Emit_Offset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -7,6 +7,8 @@ public class Lamp : PowerableObject
 {
     public int LightRadius = 5;
     [SerializeField] private GameObject _particleFizz;
+    [SerializeField] private AudioClip _lightOn;
+    [SerializeField] private AudioSource _audioSource;
 
     private void Start()
     {
@@ -19,6 +21,7 @@ public class Lamp : PowerableObject
         {
             // Request new tiles from the grid manager
             GridManager.Instance.IlluminateTiles(CellParent.Position, LightRadius);
+            _audioSource.PlayOneShot(_lightOn);
         }
         
         ObjectMaterial.SetInt("_Powered", IsPowered ? 1 : 0);

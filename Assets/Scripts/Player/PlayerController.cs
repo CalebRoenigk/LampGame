@@ -21,11 +21,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private WireReference _wireReference;
     [SerializeField] private MeshFilter _meshFilter;
     [SerializeField] private Transform _playerCameraGroup;
+    [SerializeField] private Transform _playerControlTargetsGroup;
+    [SerializeField] private AudioClip _slide;
+    [SerializeField] private AudioSource _audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         CheckMovementOptions();
+        GetComponent<MeshRenderer>().material.SetFloat("_Visiblity", 1f);
     }
 
     private void Awake()
@@ -55,24 +59,28 @@ public class PlayerController : MonoBehaviour
                     WireData wireData = _wireReference.GetWireData(WireDirection.Up, WireSegment.Start);
                     _meshFilter.mesh = wireData.WireMesh;
                     transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y-180, wireData.Rotation.z);
+                    _playerControlTargetsGroup.localRotation = Quaternion.Euler(wireData.Rotation.x, -(wireData.Rotation.y-180), wireData.Rotation.z);
                 } else if (Input.GetKey(KeyCode.DownArrow) && MovementOptions.Contains(Vector2Int.down))
                 {
                     movementDirection = Vector2Int.down;
                     WireData wireData = _wireReference.GetWireData(WireDirection.Down, WireSegment.Start);
                     _meshFilter.mesh = wireData.WireMesh;
                     transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y-180, wireData.Rotation.z);
+                    _playerControlTargetsGroup.localRotation = Quaternion.Euler(wireData.Rotation.x, -(wireData.Rotation.y-180), wireData.Rotation.z);
                 } else if (Input.GetKey(KeyCode.LeftArrow) && MovementOptions.Contains(Vector2Int.left))
                 {
                     movementDirection = Vector2Int.left;
                     WireData wireData = _wireReference.GetWireData(WireDirection.Left, WireSegment.Start);
                     _meshFilter.mesh = wireData.WireMesh;
                     transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y-180, wireData.Rotation.z);
+                    _playerControlTargetsGroup.localRotation = Quaternion.Euler(wireData.Rotation.x, -(wireData.Rotation.y-180), wireData.Rotation.z);
                 } else if (Input.GetKey(KeyCode.RightArrow) && MovementOptions.Contains(Vector2Int.right))
                 {
                     movementDirection = Vector2Int.right;
                     WireData wireData = _wireReference.GetWireData(WireDirection.Right, WireSegment.Start);
                     _meshFilter.mesh = wireData.WireMesh;
                     transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y-180, wireData.Rotation.z);
+                    _playerControlTargetsGroup.localRotation = Quaternion.Euler(wireData.Rotation.x, -(wireData.Rotation.y-180), wireData.Rotation.z);
                 }
 
                 if (movementDirection != Vector2Int.zero)
@@ -104,6 +112,11 @@ public class PlayerController : MonoBehaviour
                         WirePlacements.Enqueue(new WirePlacementData(placementTime, ConvertDirectionToWireDirection(movementDirection), segment, placementPosition));
                         placementPosition += movementDirection;
                     }
+                    
+                    _audioSource.clip = _slide;
+                    _audioSource.loop = true;
+                    _audioSource.pitch = 1f;
+                    _audioSource.Play();
                 } 
             }
         }
@@ -131,6 +144,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        float frequencyTween = Mathf.Clamp((1f-easeTween) * 3f, 0f, 1f);
+        _audioSource.pitch = frequencyTween;
+
         if (linearTween >= 1f)
         {
             Moving = false;
@@ -149,6 +165,8 @@ public class PlayerController : MonoBehaviour
                     WireManager.Instance.PlaceWire(placementData.Position, placementData.Direction, placementData.Segment);
                 }
             }
+            _audioSource.pitch = 0f;
+            _audioSource.Stop();
         }
         _playerCameraGroup.position = transform.position;
         MovementTime += Time.deltaTime;
