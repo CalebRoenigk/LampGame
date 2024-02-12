@@ -53,25 +53,25 @@ public class PlayerController : MonoBehaviour
                     movementDirection = Vector2Int.up;
                     WireData wireData = _wireReference.GetWireData(WireDirection.Up, WireSegment.Start);
                     _meshFilter.mesh = wireData.WireMesh;
-                    transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y, wireData.Rotation.z);
+                    transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y-180, wireData.Rotation.z);
                 } else if (Input.GetKey(KeyCode.DownArrow) && MovementOptions.Contains(Vector2Int.down))
                 {
                     movementDirection = Vector2Int.down;
                     WireData wireData = _wireReference.GetWireData(WireDirection.Down, WireSegment.Start);
                     _meshFilter.mesh = wireData.WireMesh;
-                    transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y, wireData.Rotation.z);
+                    transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y-180, wireData.Rotation.z);
                 } else if (Input.GetKey(KeyCode.LeftArrow) && MovementOptions.Contains(Vector2Int.left))
                 {
                     movementDirection = Vector2Int.left;
                     WireData wireData = _wireReference.GetWireData(WireDirection.Left, WireSegment.Start);
                     _meshFilter.mesh = wireData.WireMesh;
-                    transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y, wireData.Rotation.z);
+                    transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y-180, wireData.Rotation.z);
                 } else if (Input.GetKey(KeyCode.RightArrow) && MovementOptions.Contains(Vector2Int.right))
                 {
                     movementDirection = Vector2Int.right;
                     WireData wireData = _wireReference.GetWireData(WireDirection.Right, WireSegment.Start);
                     _meshFilter.mesh = wireData.WireMesh;
-                    transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y, wireData.Rotation.z);
+                    transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y-180, wireData.Rotation.z);
                 }
 
                 if (movementDirection != Vector2Int.zero)
