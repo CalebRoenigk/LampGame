@@ -11,6 +11,7 @@ public class Cell
     public bool IsCheckpoint;
     public bool IsPowered;
     public float Visibility;
+    public StructureType StructureType;
 
     public Cell(Vector2Int position)
     {
@@ -18,6 +19,7 @@ public class Cell
         this.IsTraversable = true;
         this.IsCheckpoint = false;
         this.IsPowered = false;
+        this.StructureType = StructureType.Empty;
     }
 
     public void AddWire(Wire wire)

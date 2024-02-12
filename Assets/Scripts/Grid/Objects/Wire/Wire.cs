@@ -18,6 +18,7 @@ public class Wire : EmitterObject
         Segment = segment;
         _meshFilter.mesh = wireData.WireMesh;
         transform.rotation = Quaternion.Euler(wireData.Rotation.x, wireData.Rotation.y, wireData.Rotation.z);
+        ObjectMaterial.SetFloat("_Visibility", 1f);
         Setup(); // Turn the emit state to on
     }
 }

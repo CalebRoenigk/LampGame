@@ -14,7 +14,6 @@ public class GridManager : MonoBehaviour
     public GameObject CellBase;
     public float MaxVisibilityDelay = 1f;
     public int Seed = 0;
-    public Vector2Int LightDistanceRange = new Vector2Int(5, 8);
     public float MaxSpawnChance = 0.9f;
     private float _lampSpawnChance = 0.9f;
 
@@ -35,7 +34,7 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Seed = UnityEngine.Random.Range(0, 10000);
+        UnityEngine.Random.InitState(Seed);
         float maxCentralDist = Mathf.Sqrt(Mathf.Pow(StartGridSize, 2) + Mathf.Pow(StartGridSize, 2));
         
         for (int x = -(int)Mathf.Floor((float)StartGridSize/2f); x < (int)Mathf.Ceil((float)StartGridSize/2f); x++)
@@ -55,17 +54,11 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnDrawGizmos()
     {
-        foreach (KeyValuePair<Vector2Int, Cell> Cell in Grid.Cells)
+        foreach (KeyValuePair<Vector2Int, Cell> cell in Grid.Cells)
         {
-            if (Cell.Value.IsPowered)
+            if (cell.Value.IsPowered)
             {
                 Gizmos.color = Color.green;
             }
@@ -74,7 +67,7 @@ public class GridManager : MonoBehaviour
                 Gizmos.color = Color.white;
             }
 
-            Gizmos.DrawWireCube(new Vector3(Cell.Key.x, 0f, Cell.Key.y), new Vector3(1f, 0f, 1f));
+            Gizmos.DrawWireCube(new Vector3(cell.Key.x, 0f, cell.Key.y), new Vector3(1f, 0f, 1f));
         }
     }
 
@@ -138,8 +131,19 @@ public class GridManager : MonoBehaviour
     // Generates a cell and any objects within it
     public void GenerateCell(Cell cell, float delay = 0f)
     {
-        CellBase cellBase = Instantiate(CellBase, cell.GetWorldPosition(), Quaternion.identity, transform).GetComponent<CellBase>();
-        cell.SetObject(cellBase);
+        switch (cell.StructureType)
+        {
+            case StructureType.Empty:
+            default:
+                CellBase cellBase = Instantiate(CellBase, cell.GetWorldPosition(), Quaternion.identity, transform).GetComponent<CellBase>();
+                cell.SetObject(cellBase);
+                break;
+            case StructureType.Lamp:
+                Lamp lamp = Instantiate(Lamp, cell.GetWorldPosition(), Quaternion.identity, transform).GetComponent<Lamp>();
+                cell.SetObject(lamp);
+                break;
+        }
+
         cell.SetVisibility(1f, delay);
     }
 
@@ -148,6 +152,7 @@ public class GridManager : MonoBehaviour
         Lamp lamp = Instantiate(Lamp, cell.GetWorldPosition(), Quaternion.identity, transform).GetComponent<Lamp>();
         cell.SetObject(lamp);
         cell.SetVisibility(1f, delay);
+        Grid.SetStructure(StructureType.Lamp, cell.Position);
     }
     
 }
