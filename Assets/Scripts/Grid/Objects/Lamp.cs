@@ -6,6 +6,7 @@ using UnityEngine;
 public class Lamp : PowerableObject
 {
     public int LightRadius = 5;
+    [SerializeField] private GameObject _particleFizz;
 
     private void Start()
     {
@@ -21,5 +22,6 @@ public class Lamp : PowerableObject
         }
         
         ObjectMaterial.SetInt("_Powered", IsPowered ? 1 : 0);
+        _particleFizz.SetActive(IsPowered);
     }
 }
