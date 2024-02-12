@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     public int Power = 8;
     [SerializeField] private WireReference _wireReference;
     [SerializeField] private MeshFilter _meshFilter;
-    
+    [SerializeField] private Transform _playerCameraGroup;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -119,7 +120,7 @@ public class PlayerController : MonoBehaviour
         float easeTween = EaseOutQuint(linearTween);
 
         transform.position = Vector3.Lerp(new Vector3(CurrentPosition.x, 0f, CurrentPosition.y), new Vector3(NextPosition.x, 0f, NextPosition.y), easeTween);
-        
+
         // Wire placement
         if (WirePlacements.Count > 0)
         {
@@ -149,6 +150,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        _playerCameraGroup.position = transform.position;
         MovementTime += Time.deltaTime;
     }
 
