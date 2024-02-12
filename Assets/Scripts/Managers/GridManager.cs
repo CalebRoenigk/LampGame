@@ -10,6 +10,8 @@ public class GridManager : MonoBehaviour
     
     public Grid Grid = new Grid();
     public int StartGridSize = 5;
+    public GameObject Wall;
+    public GameObject Battery;
     public GameObject Lamp;
     public GameObject CellBase;
     public float MaxVisibilityDelay = 1f;
@@ -141,6 +143,14 @@ public class GridManager : MonoBehaviour
             case StructureType.Lamp:
                 Lamp lamp = Instantiate(Lamp, cell.GetWorldPosition(), Quaternion.identity, transform).GetComponent<Lamp>();
                 cell.SetObject(lamp);
+                break;
+            case StructureType.Battery:
+                Battery battery = Instantiate(Battery, cell.GetWorldPosition(), Quaternion.identity, transform).GetComponent<Battery>();
+                cell.SetObject(battery);
+                break;
+            case StructureType.Wall:
+                Wall wall = Instantiate(Wall, cell.GetWorldPosition(), Quaternion.identity, transform).GetComponent<Wall>();
+                cell.SetObject(wall);
                 break;
         }
 

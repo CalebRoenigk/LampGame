@@ -274,6 +274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartGridSize: 5
+  Wall: {fileID: 0}
+  Battery: {fileID: 3029585026113423477, guid: 53973dd70e7c64d4c88a3e633a3e6568, type: 3}
   Lamp: {fileID: 5452468987702587910, guid: ac1100e0d60a9479a9f309f3be5e7273, type: 3}
   CellBase: {fileID: 2373887195764697130, guid: cdc7350f5673f44a7907fd2c8e449581,
     type: 3}

@@ -7,7 +7,12 @@ public class Grid
 {
     public Dictionary<Vector2Int, Cell> Cells = new Dictionary<Vector2Int, Cell>();
     public Vector2Int LightDistanceRange = new Vector2Int(6, 10);
+    public Vector2Int BatteryDistanceRange = new Vector2Int(12, 16);
+    public Vector2Int WallDistanceRange = new Vector2Int(9, 13);
+    public Vector2Int WallLengthRange = new Vector2Int(3, 7);
     private float _lampSpawnChance = 0f;
+    private float _batterySpawnChance = 0f;
+    private float _wallSpawnChance = 0f;
 
     public Grid()
     {
@@ -119,6 +124,65 @@ public class Grid
             }
         }
         
+        // Battery Spawning
+        var nearbyBatteries = Cells.Where(l =>
+            l.Key.x >= position.x - BatteryDistanceRange.y && l.Key.x <= position.x + BatteryDistanceRange.y &&
+            l.Key.y >= position.y - BatteryDistanceRange.y && l.Key.y <= position.y + BatteryDistanceRange.y &&
+            l.Value.StructureType == StructureType.Battery);
+
+        bool canSpawnBattery = true;
+        foreach (var batteryCell in nearbyBatteries)
+        {
+            if (Vector2Int.Distance(batteryCell.Key, position) < BatteryDistanceRange.x)
+            {
+                canSpawnBattery = false;
+                break;
+            }
+        }
+
+        if (canSpawnBattery)
+        {
+            if (UnityEngine.Random.Range(0f, 1f) > 1f - _batterySpawnChance)
+            {
+                _batterySpawnChance = 0f;
+                return StructureType.Battery;
+            }
+            else
+            {
+                _batterySpawnChance += 0.0625f;
+            }
+        }
+     
+        // Wall spawning
+        var nearbyWalls = Cells.Where(l =>
+            l.Key.x >= position.x - WallDistanceRange.y && l.Key.x <= position.x + WallDistanceRange.y &&
+            l.Key.y >= position.y - WallDistanceRange.y && l.Key.y <= position.y + WallDistanceRange.y &&
+            l.Value.StructureType == StructureType.Wall);
+
+        bool canSpawnWall = true;
+        foreach (var wallCell in nearbyWalls)
+        {
+            if (Vector2Int.Distance(wallCell.Key, position) < WallDistanceRange.x)
+            {
+                canSpawnWall = false;
+                break;
+            }
+        }
+
+        if (canSpawnWall)
+        {
+            if (UnityEngine.Random.Range(0f, 1f) > 1f - _wallSpawnChance)
+            {
+                _wallSpawnChance = 0f;
+                return StructureType.Wall;
+            }
+            else
+            {
+                _wallSpawnChance += 0.05f;
+            }
+        }
+        // TODO: Wall Spawning should happen after a lamp is picked, in an area far outside of the visible range Wall center point, from there a mini for loop will flag a series of tiles (from a random wander) for walls
+
         return StructureType.Empty;
     }
 }
