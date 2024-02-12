@@ -63,4 +63,12 @@ public class Grid
             Cells[position].SetPower(power);
         }
     }
+
+    public void CheckPlayerEffects(Vector2Int position)
+    {
+        if (Cells[position].GridObject is Battery)
+        {
+            ((Battery)Cells[position].GridObject).AddPowerToPlayer();
+        }
+    }
 }

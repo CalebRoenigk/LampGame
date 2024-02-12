@@ -6,6 +6,7 @@ public class Cell
 {
     public Vector2Int Position;
     public GridObject GridObject;
+    public List<Wire> Wires = new List<Wire>();
     public bool IsTraversable;
     public bool IsCheckpoint;
     public bool IsPowered;
@@ -17,6 +18,16 @@ public class Cell
         this.IsTraversable = true;
         this.IsCheckpoint = false;
         this.IsPowered = false;
+    }
+
+    public void AddWire(Wire wire)
+    {
+        if (!Wires.Contains(wire))
+        {
+            Wires.Add(wire);
+            wire.Cell = this;
+            this.SetPower(true);
+        }
     }
 
     public void SetObject(GridObject gridObject)

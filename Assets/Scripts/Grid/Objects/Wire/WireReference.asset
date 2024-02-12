@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0baf5b009ea8640d89b996887b73381b, type: 3}
+  m_Name: WireReference
+  m_EditorClassIdentifier: 
+  WireData:
+  - Direction: 10
+    Segment: 10
+    WireMesh: {fileID: -7164224406520755343, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 0, z: 0}
+  - Direction: 10
+    Segment: 12
+    WireMesh: {fileID: -7164224406520755343, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 180, z: 0}
+  - Direction: 10
+    Segment: 11
+    WireMesh: {fileID: -5375424629268158700, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 0, z: 0}
+  - Direction: 11
+    Segment: 10
+    WireMesh: {fileID: -7164224406520755343, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 180, z: 0}
+  - Direction: 11
+    Segment: 12
+    WireMesh: {fileID: -7164224406520755343, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 0, z: 0}
+  - Direction: 11
+    Segment: 11
+    WireMesh: {fileID: -5375424629268158700, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 0, z: 0}
+  - Direction: 12
+    Segment: 10
+    WireMesh: {fileID: -7164224406520755343, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: -90, z: 0}
+  - Direction: 12
+    Segment: 12
+    WireMesh: {fileID: -7164224406520755343, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 90, z: 0}
+  - Direction: 12
+    Segment: 11
+    WireMesh: {fileID: -5375424629268158700, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 90, z: 0}
+  - Direction: 13
+    Segment: 10
+    WireMesh: {fileID: -7164224406520755343, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 90, z: 0}
+  - Direction: 13
+    Segment: 12
+    WireMesh: {fileID: -7164224406520755343, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: -90, z: 0}
+  - Direction: 13
+    Segment: 11
+    WireMesh: {fileID: -5375424629268158700, guid: 6c3b93a54d8e04a83b532c4c10d7aefa,
+      type: 3}
+    Rotation: {x: 0, y: 90, z: 0}
