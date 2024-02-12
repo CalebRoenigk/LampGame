@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dbe2a8beff6474db6779b26c2169cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartGridSize: 7
+  StartGridSize: 5
   Lamp: {fileID: 5452468987702587910, guid: ac1100e0d60a9479a9f309f3be5e7273, type: 3}
   CellBase: {fileID: 2373887195764697130, guid: cdc7350f5673f44a7907fd2c8e449581,
     type: 3}

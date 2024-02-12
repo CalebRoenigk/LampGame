@@ -4990,5 +4990,5 @@ MonoBehaviour:
   IsTraversable: 1
   IsCheckpoint: 1
   IsPowered: 0
-  LightRadius: 3
+  LightRadius: 5
   _particleFizz: {fileID: 1657759673694058142}
