@@ -12,7 +12,6 @@ public class Grid
     public Vector2Int WallLengthRange = new Vector2Int(3, 7);
     private float _lampSpawnChance = 0f;
     private float _batterySpawnChance = 0f;
-    private float _wallSpawnChance = 0f;
 
     public Grid()
     {
@@ -24,6 +23,13 @@ public class Grid
         if (!Cells.ContainsKey(position))
         {
             StructureType cellType = DetermineCellType(position);
+
+            // TODO: Wall Spawning should happen after a lamp is picked, in an area far outside of the visible range Wall center point, from there a mini for loop will flag a series of tiles (from a random wander) for walls
+            if (cellType == StructureType.Lamp)
+            {
+                // Find a wall spawn location
+                
+            }
             
             Cell newCell = new Cell(position);
             newCell.StructureType = cellType;
@@ -152,37 +158,7 @@ public class Grid
                 _batterySpawnChance += 0.0625f;
             }
         }
-     
-        // Wall spawning
-        var nearbyWalls = Cells.Where(l =>
-            l.Key.x >= position.x - WallDistanceRange.y && l.Key.x <= position.x + WallDistanceRange.y &&
-            l.Key.y >= position.y - WallDistanceRange.y && l.Key.y <= position.y + WallDistanceRange.y &&
-            l.Value.StructureType == StructureType.Wall);
-
-        bool canSpawnWall = true;
-        foreach (var wallCell in nearbyWalls)
-        {
-            if (Vector2Int.Distance(wallCell.Key, position) < WallDistanceRange.x)
-            {
-                canSpawnWall = false;
-                break;
-            }
-        }
-
-        if (canSpawnWall)
-        {
-            if (UnityEngine.Random.Range(0f, 1f) > 1f - _wallSpawnChance)
-            {
-                _wallSpawnChance = 0f;
-                return StructureType.Wall;
-            }
-            else
-            {
-                _wallSpawnChance += 0.05f;
-            }
-        }
-        // TODO: Wall Spawning should happen after a lamp is picked, in an area far outside of the visible range Wall center point, from there a mini for loop will flag a series of tiles (from a random wander) for walls
-
+        
         return StructureType.Empty;
     }
 }
